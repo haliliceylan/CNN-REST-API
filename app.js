@@ -16,7 +16,11 @@ app.post('/', (req, res, next) => {
   var visit = req.body;
   visit.timestamp = new Date();
 
-  res.send(visit);
+  datastore.save({
+    key: datastore.key('CNN_Data'),
+    data: visit,
+  });
+  res.send("ok");
 });
 
 const PORT = process.env.PORT || 8080;
